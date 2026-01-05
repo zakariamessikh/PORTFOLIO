@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakaria Messikh - Refining & Chemical Engineering Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --charcoal: #0b0f19;
+            --emerald: #004d3d;
+            --amber: #ff9d00;
+            --teal: #00a9a5;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--charcoal);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+.top-contact-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px 20px;
+
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 13px;
+}
+
+.top-contact-bar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.top-contact-bar a i {
+    color: var(--amber);
+}
+
+.top-contact-bar a:hover {
+    color: var(--amber);
+}
+
+        /* Animated Background */
+        .hero-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; overflow: hidden;
+            background: linear-gradient(135deg, #0b0f19 0%, #1a1f2e 50%, #0b0f19 100%);
+        }
+
+        .refinery-silhouette {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 100%; height: 60%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect x="100" y="150" width="40" height="250" fill="%23001a33" opacity="0.8"/><rect x="150" y="100" width="45" height="300" fill="%23001a33" opacity="0.8"/><rect x="200" y="120" width="35" height="280" fill="%23001a33" opacity="0.8"/><circle cx="120" cy="140" r="15" fill="%23ff9d00" opacity="0.6"/><circle cx="172" cy="90" r="18" fill="%23ff9d00" opacity="0.7"/><rect x="300" y="180" width="50" height="220" fill="%23001a33" opacity="0.8"/><rect x="360" y="140" width="40" height="260" fill="%23001a33" opacity="0.8"/><rect x="500" y="160" width="55" height="240" fill="%23001a33" opacity="0.8"/><rect x="700" y="120" width="45" height="280" fill="%23001a33" opacity="0.8"/><rect x="800" y="150" width="50" height="250" fill="%23001a33" opacity="0.8"/><circle cx="525" cy="150" r="20" fill="%23ff9d00" opacity="0.8"/><circle cx="720" cy="110" r="16" fill="%23ff9d00" opacity="0.6"/><path d="M140 200 Q150 190 160 200" stroke="%23003d4d" stroke-width="3" fill="none"/><path d="M200 220 Q250 200 300 220" stroke="%23003d4d" stroke-width="3" fill="none"/><path d="M360 180 Q400 170 440 180" stroke="%23003d4d" stroke-width="3" fill="none"/></svg>') no-repeat center bottom;
+            background-size: contain; animation: subtleGlow 4s ease-in-out infinite; opacity: 0.4;
+        }
+
+        @keyframes subtleGlow { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.3); } }
+
+        .stars {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(2px 2px at 20% 30%, white, transparent),
+                        radial-gradient(2px 2px at 60% 70%, white, transparent),
+                        radial-gradient(1px 1px at 50% 50%, white, transparent),
+                        radial-gradient(1px 1px at 80% 10%, white, transparent),
+                        radial-gradient(2px 2px at 90% 60%, white, transparent),
+                        radial-gradient(1px 1px at 33% 80%, white, transparent);
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        @keyframes twinkle { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+        /* Main Container */
+        .container {
+			padding-top: 70px;
+            position: relative; z-index: 1; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
+        }
+
+        /* Flipbook Container */
+        .flipbook-wrapper { perspective: 2000px; position: relative; width: 100%; max-width: 90vw; }
+
+        .flipbook { 
+            width: 100%; 
+            height: 80vh; 
+            position: relative; 
+            transform-style: preserve-3d; 
+            margin: 0 auto; 
+        }
+
+        .page {
+            position: absolute; 
+            width: 50%; 
+            height: 100%;
+            background: rgba(10, 15, 25, 0.95); 
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            padding: 40px 35px; 
+            transform-origin: left center;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5); 
+            overflow-y: auto;
+            scrollbar-width: thin; 
+            scrollbar-color: var(--amber) transparent;
+        }
+
+        .page::-webkit-scrollbar { width: 6px; }
+        .page::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 10px; }
+
+        .page.left { left: 0; }
+        .page.right { left: 50%; }
+        .page.flipped { transform: rotateY(-180deg); }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            .flipbook { height: 80vh; }
+            .page {
+                width: 100%;
+                left: 0 !important;
+                padding: 25px 20px;
+                transform-origin: center;
+            }
+            .page.flipped {
+                transform: rotateY(0);
+                opacity: 0;
+                pointer-events: none;
+            }
+			.top-contact-bar {
+				flex-wrap: wrap;
+				gap: 12px;
+				font-size: 12px;
+				text-align: center;
+			}
+            .cover-title { font-size: 22px; }
+            .university-logo-container { width: 100%; }
+            .software-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 16px; padding: 15px; backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); margin-bottom: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Page 1: Cover */
+        .cover-page {
+            display: flex; 
+			flex-direction: column; 
+			justify-content: center; 
+			align-items: center;
+            text-align: center; 
+			background: linear-gradient(135deg, rgba(0, 77, 61, 0.3), rgba(11, 15, 25, 0.95));
+			align-items : center;
+        }
+
+        .university-logo-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px; border-radius: 12px; margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+			max-width: 250px;
+			display:flex;
+			justify-content : center;
+			align-items : center;
+
+			margin-left:auto;
+			margin-right:auto;
+        }
+
+        .university-logo { width: 100%; height: auto; }
+
+        .profile-photo {
+            width: 280px; height: 280px; border-radius: 50%; border: 6px solid var(--amber);
+            background: linear-gradient(135deg, #1a1f2e, #0b0f19);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 30px; box-shadow: 0 0 50px rgba(255, 157, 0, 0.5);
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        .cover-title {
+            font-size: 36px; font-weight: 800; margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--amber), var(--teal));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cover-subtitle { font-size: 18px; color: #eee; line-height: 1.4; max-width: 450px; font-weight: 600; }
+
+        /* Page Content Styling */
+        h2 { font-size: 24px; margin-bottom: 20px; color: var(--amber); border-bottom: 2px solid var(--amber); padding-bottom: 8px; }
+        h3 { font-size: 18px; margin-bottom: 12px; color: var(--teal); }
+        p { line-height: 1.6; color: #ccc; margin-bottom: 12px; font-size: 14px; }
+
+        .academic-card {
+            background: var(--glass-bg); border: 1px solid var(--emerald);
+            border-radius: 12px; padding: 15px; position: relative; overflow: hidden; margin-bottom: 15px;
+        }
+        .academic-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--amber), var(--teal));
+        }
+
+        /* Software Icons */
+        .software-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px; }
+        .software-item {
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            border-radius: 12px; padding: 15px; text-align: center;
+        }
+        .software-icon { font-size: 24px; color: var(--amber); margin-bottom: 8px; }
+        .software-item h4 { font-size: 12px; color: #fff; }
+
+        /* Contact Page Styling */
+        .contact-item {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+            padding: 12px; background: var(--glass-bg); border-radius: 12px;
+            border: 1px solid var(--glass-border); text-decoration: none; color: #fff;
+            transition: all 0.3s ease;
+        }
+        .contact-item:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--amber); }
+        .contact-icon { width: 40px; height: 40px; background: var(--amber); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+        .contact-info h4 { font-size: 10px; color: var(--teal); text-transform: uppercase; margin-bottom: 2px; }
+        .contact-info p { margin-bottom: 0; font-size: 13px; font-weight: 600; word-break: break-all; }
+
+        .cv-download-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            width: 100%; padding: 15px; background: linear-gradient(135deg, var(--amber), #ff6b00);
+            border-radius: 12px; color: #fff; text-decoration: none; font-weight: 700;
+            font-size: 16px; margin-top: 10px; box-shadow: 0 8px 16px rgba(255, 157, 0, 0.3);
+        }
+
+        /* Navigation Controls */
+        .nav-controls { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .nav-btn {
+            background: var(--glass-bg); border: 1px solid var(--glass-border); color: #fff;
+            padding: 10px 20px; border-radius: 30px; cursor: pointer; font-weight: 600;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+        }
+        .nav-btn:hover:not(:disabled) { background: var(--amber); border-color: var(--amber); }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .page-indicator { text-align: center; margin-bottom: 10px; font-size: 12px; color: #888; letter-spacing: 2px; text-transform: uppercase; }
+
+    </style>
+</head>
+<body>
+	<div class="top-contact-bar">
+		<a href="tel:+79668553836"><i class="fas fa-phone"></i> +7 966 855 3836</a>
+		<a href="mailto:zakariamessikh@contact.pro"><i class="fas fa-envelope"></i> zakariamessikh@contact.pro</a>
+		<a href="https://dz.linkedin.com/in/zakaria-messikh-776692229" target="_blank">
+			<i class="fab fa-linkedin-in"></i> LinkedIn
+		</a>
+	</div>
+    <div class="hero-background">
+        <div class="stars"></div>
+        <div class="refinery-silhouette"></div>
+    </div>
+
+    <div class="container">
+        <div class="flipbook-wrapper">
+            <div class="page-indicator" id="pageIndicator">Page 1 of 10</div>
+            <div class="flipbook" id="flipbook">
+                <!-- Page 1: Cover -->
+                <div class="page left cover-page" data-page="1" >
+                    <div class="university-logo-container" >
+                        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663029514443/nxzhRuNTRncIAoNg.png" alt="Saint Petersburg Mining University Logo" class="university-logo">
+                    </div>
+                    <div class="profile-photo" style="margin-top: 40px;">
+                        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310419663029514443/UhDNyapnHxuYzBGl.jpeg" alt="Zakaria Messikh">
+                    </div>
+                    <h1 class="cover-title">Zakaria Messikh</h1>
+                    <p class="cover-subtitle">Petroleum & Chemical Engineer Portfolio</p>
+                </div>
+
+                <!-- Page 2: Personal Bio & Cover Letter -->
+                <div class="page right" data-page="2">
+                    <h2><i class="fas fa-user-tie"></i> Personal Bio</h2>
+                    <div class="glass-card">
+                        <p style="font-size: 13px; text-align: justify; color: #fff; font-weight: 500;">Process Engineer holding a dual Master’s degree in Chemical Engineering (Russia) and Refining Engineering (Algeria), with a strong scientific and technical background in the oil & gas and pharmaceutical industries. My profile is reinforced by several industrial internships, notably with SONATRACH and SAIDAL, as well as solid proficiency in process simulation software. Currently working as a Quality Control Analyst in a pharmaceutical company, I am recognized for my rigor, analytical mindset, and adaptability, which I apply to support industrial performance and innovation.</p>
+                    </div>
+                    
+                    <h2 style="margin-top: 30px;"><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
+                    <div class="glass-card">
+                        <p style="font-size: 13px; text-align: justify;">I am a motivated Chemical and Refining Engineer with a strong academic background and a keen interest in the oil and gas and energy sectors. I hold two Master’s degrees: one in Refining Engineering from USTHB (Algiers) and another in Chemical Engineering focused on energy processing and carbon materials from Saint Petersburg Mining University.</p>
+                        <p style="font-size: 13px; text-align: justify;">I gained practical experience through industrial training with SONATRACH and SAIDAL, where I was exposed to refinery operations, process monitoring, and simulation using Aspen HYSYS. These experiences strengthened my technical skills, analytical thinking, and understanding of industrial safety and performance standards.</p>
+                    </div>
+                </div>
+
+                <!-- Page 3: Academic Path - Russia -->
+                <div class="page left" data-page="3">
+                    <h2><i class="fas fa-graduation-cap"></i> Academic Path – Russia</h2>
+                    <div class="academic-card">
+                        <h3>Master’s Thesis | Chemical Engineering (2024)</h3>
+                        <p style="font-size: 12px; color: var(--amber); font-weight: 600;">Saint Petersburg Mining University</p>
+                        <p style="font-size: 12px; text-align: justify;">Completed a Master’s thesis on natural gas desulfurization using adsorption technology. The project focused on H₂S removal through a manganese oxide–modified aluminum oxide adsorbent, demonstrating high adsorption efficiency, regeneration capability, and cost effectiveness.</p>
+                        <p style="font-size: 12px; text-align: justify;">Gained strong experience in natural gas processing, adsorption processes, process analysis, and techno-economic evaluation, with consideration of environmental impact, industrial safety, and QHSE standards.</p>
+                        <div style="margin-top: 20px; text-align: center;">
+                            <img src="profile_russia.jpg" alt="Zakaria Messikh in Russia" style="width: 100%; max-width: 250px; border-radius: 12px; border: 3px solid var(--amber); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4: Academic Path – Algeria -->
+                <div class="page right" data-page="4">
+                    <h2><i class="fas fa-graduation-cap"></i> Academic Path – Algeria</h2>
+                    <div class="academic-card">
+                        <h3>Master’s Thesis – Refining Engineering (2021)</h3>
+                        <p style="font-size: 12px; color: var(--amber); font-weight: 600;">USTHB (Algiers)</p>
+                        <p style="font-size: 12px; text-align: justify;">Conducted a Master’s thesis focused on the optimization of naphtha treatment processes at the Algiers Refinery (SONATRACH). Analyzed naphtha hydrotreating, isomerization, and continuous catalytic reforming (CCR) to improve gasoline quality and octane number.</p>
+                        <p style="font-size: 12px; text-align: justify;">Performed physicochemical analyses on naphtha streams to ensure compliance with quality standards, gaining strong experience in refining operations, process optimization, and quality control.</p>
+                    </div>
+                    <div class="academic-card">
+                        <h3>Bachelor's Degree | Process Engineering (2019)</h3>
+                        <p style="font-size: 12px; color: var(--amber); font-weight: 600;">USTHB (Algiers)</p>
+                        <p style="font-size: 12px;">Completed an intensive program mastering key modules and gaining hands-on experience through internships.</p>
+                    </div>
+                </div>
+
+                <!-- Page 5: Technical Portfolio - QC -->
+                <div class="page left" data-page="5">
+                    <h2><i class="fas fa-vial"></i> Technical Portfolio - QC</h2>
+                    <div class="glass-card">
+                        <h3>Quality Control Officer – Pharmaceutical Industry</h3>
+                        <p style="color: var(--teal); font-weight: 600;">GENERICLAB</p>
+                        <p style="font-size: 13px; text-align: justify;">Quality Control Officer with experience in physicochemical analysis and quality control across all stages of pharmaceutical manufacturing.</p>
+                        <p style="font-size: 13px; text-align: justify;">Skilled in analytical techniques including <strong>HPLC, GC, and UV-Visible spectrophotometry</strong>, with strong knowledge of GMP compliance and pharmaceutical quality standards.</p>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <img src="psimg.webp" ship" style="width: 100%; border-radius: 10px; border: 2px solid var(--teal); box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        </div>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Pharmaceutical Industry Internship</h3>
+                        <p style="color: var(--teal); font-weight: 600;">SAIDAL, Algiers | 2019</p>
+                        <p style="font-size: 13px;">Monitored the manufacturing process of Rhumaphed medication and conducted quality control during production.</p>
+                    </div>
+                </div>
+
+                <!-- Page 6: Technical Portfolio - Refining -->
+                <div class="page right" data-page="6">
+                    <h2><i class="fas fa-industry"></i> Technical Portfolio - Refining</h2>
+                    <div class="glass-card">
+                        <h3>Process Engineering Internship – Refining</h3>
+                        <p style="color: var(--teal); font-weight: 600;">SONATRACH Hassi Messaoud | 2021</p>
+                        <p style="font-size: 13px;">Designed and simulated a new hydrogen storage line using <strong>Aspen HYSYS</strong> software. Gained in-depth knowledge of distillation, cracking, reforming, and hydrotreating operations.</p>
+                        <div style="margin-top: 15px; text-align: center;">
+                            <img src="internship_sonatrach.jpg" alt="Sonatrach Internship" style="width: 100%; border-radius: 10px; border: 2px solid var(--teal); box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+                        </div>
+                    </div>
+                    <div class="glass-card">
+                        <h3>Process Engineering Internship – Refining</h3>
+                        <p style="color: var(--teal); font-weight: 600;">SONATRACH, Algiers | 2021</p>
+                        <p style="font-size: 13px;">Studied Naphtha treatment processes in the MS BLOCK unit. Analyzed and optimized refining parameters.</p>
+                    </div>
+                </div>
+
+                <!-- Page 7: Software Stack -->
+                <div class="page left" data-page="7">
+                    <h2><i class="fas fa-laptop-code"></i> Software Expertise</h2>
+                    <div class="software-grid">
+                        <div class="software-item"><div class="software-icon"><i class="fas fa-cogs"></i></div><h4>Aspen HYSYS</h4></div>
+                        <div class="software-item"><div class="software-icon"><i class="fas fa-flask"></i></div><h4>Aspen Plus</h4></div>
+                        <div class="software-item"><div class="software-icon"><i class="fas fa-chart-area"></i></div><h4>MATLAB</h4></div>
+                        <div class="software-item"><div class="software-icon"><i class="fas fa-file-word"></i></div><h4>MS Office</h4></div>
+                        <div class="software-item"><div class="software-icon"><i class="fas fa-vial"></i></div><h4>QC Tools</h4></div>
+                    </div>
+                </div>
+
+                <!-- Page 8: Professional Vision -->
+                <div class="page right" data-page="8">
+                    <h2><i class="fas fa-bullseye"></i> Professional Vision</h2>
+                    <div class="glass-card">
+                        <h3>Commitment to Excellence</h3>
+                        <p>Dedicated to advancing industrial performance through a blend of chemical engineering expertise and rigorous quality control standards.</p>
+                    </div>
+                    <ul style="margin-left: 20px; color: #ccc; line-height: 2; font-size: 14px;">
+                        <li>Optimizing downstream operations</li>
+                        <li>Ensuring pharmaceutical quality standards</li>
+                        <li>Driving innovation in process engineering</li>
+                        <li>Adhering to QHSE & Industrial Safety</li>
+                    </ul>
+                </div>
+
+                <!-- Page 9: Contact -->
+                <div class="page left" data-page="9">
+                    <h2><i class="fas fa-address-book"></i> Contact</h2>
+                    <div class="contact-list">
+                        <a href="tel:+79668553836" class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-info">
+                                <h4>Phone</h4>
+                                <p>+7 966 855 3836</p>
+                            </div>
+                        </a>
+                        <a href="mailto:zakariamessikh@contact.pro" class="contact-item">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-info">
+                                <h4>Email</h4>
+                                <p>zakariamessikh@contact.pro</p>
+                            </div>
+                        </a>
+                        <a href="https://dz.linkedin.com/in/zakaria-messikh-776692229" target="_blank" class="contact-item">
+                            <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                            <div class="contact-info">
+                                <h4>LinkedIn</h4>
+                                <p>Zakaria Messikh</p>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="CVZAKARIAMESSIKH.pdf" download="CVZAKARIAMESSIKH.pdf" class="cv-download-btn">
+                        <i class="fas fa-file-pdf"></i> Download Full CV
+                    </a>
+                </div>
+
+                <!-- Page 10: Closing -->
+                <div class="page right" data-page="10" style="background: linear-gradient(rgba(11, 15, 25, 0.8), rgba(11, 15, 25, 0.8)), url('https://files.manuscdn.com/user_upload_by_module/session_file/310519663275143051/kdmTQJSdKLzdOude.jpg'); background-size: cover; background-position: center;">
+                    <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <div class="contact-icon" style="width: 60px; height: 60px; font-size: 24px; margin-bottom: 20px; background: var(--amber); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i class="fas fa-handshake"></i></div>
+                        <h2 style="border: none; margin-bottom: 10px; color: #fff; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Thank You</h2>
+                        <p style="color: #eee; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">For your time and consideration.</p>
+                        <p style="color: var(--amber); font-weight: 700; margin-top: 15px; font-size: 20px; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Zakaria Messikh</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                <button class="nav-btn" id="nextBtn">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1; 
+        const totalPages = 10;
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('pageIndicator');
+
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        function updatePages() {
+            const mobile = isMobile();
+            
+            pages.forEach((page) => {
+                const pageNum = parseInt(page.getAttribute('data-page'));
+                
+                if (mobile) {
+                    if (pageNum === currentPage) {
+                        page.style.display = 'block';
+                        page.style.opacity = '1';
+                        page.classList.remove('flipped');
+                    } else {
+                        page.style.display = 'none';
+                        page.style.opacity = '0';
+                    }
+                } else {
+                    if (pageNum < currentPage) { 
+                        page.classList.add('flipped'); 
+                        page.style.display = 'none'; 
+                    }
+                    else if (pageNum === currentPage || pageNum === currentPage + 1) { 
+                        page.classList.remove('flipped'); 
+                        page.style.display = 'block'; 
+                        page.style.opacity = '1';
+                    }
+                    else { 
+                        page.classList.remove('flipped'); 
+                        page.style.display = 'none'; 
+                    }
+                }
+            });
+
+            prevBtn.disabled = currentPage === 1;
+            
+            if (mobile) {
+                nextBtn.disabled = currentPage === totalPages;
+                pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+            } else {
+                nextBtn.disabled = currentPage >= totalPages - 1;
+                pageIndicator.textContent = `Page ${currentPage}-${Math.min(currentPage + 1, totalPages)} of ${totalPages}`;
+            }
+        }
+
+        nextBtn.addEventListener('click', () => { 
+            const mobile = isMobile();
+            if (mobile) {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    updatePages();
+                }
+            } else {
+                if (currentPage < totalPages - 1) { 
+                    currentPage += 2; 
+                    updatePages(); 
+                } 
+            }
+        });
+
+        prevBtn.addEventListener('click', () => { 
+            const mobile = isMobile();
+            if (mobile) {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updatePages();
+                }
+            } else {
+                if (currentPage > 1) { 
+                    currentPage -= 2; 
+                    updatePages(); 
+                } 
+            }
+        });
+
+        window.addEventListener('resize', updatePages);
+        updatePages();
+    </script>
+</body>
+</html>
